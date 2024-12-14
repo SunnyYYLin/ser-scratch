@@ -14,15 +14,15 @@ train_dataset, val_dataset = dataset['train'], dataset['test']
 print("Dataset loaded.")
 
 # Load the model
-config = CNNConfig()
+config = Wav2VecConfig()
 model = EmotionClassifier(config)
 
 # Load the trainer
 args = TrainingArguments(
     output_dir='checkpoints',
     num_train_epochs=64,
-    per_device_train_batch_size=4,
-    per_device_eval_batch_size=4,
+    per_device_train_batch_size=16,
+    per_device_eval_batch_size=16,
     logging_strategy='steps',
     eval_strategy='epoch',
     logging_dir='logs',
@@ -30,7 +30,9 @@ args = TrainingArguments(
     save_strategy='epoch',
     save_steps=1,
     save_total_limit=2,
-    load_best_model_at_end=True
+    load_best_model_at_end=True,
+    use_cpu=False,
+    fp16=True
 )
 call_backs = [
     # EarlyStoppingCallback(early_stopping_patience=10)

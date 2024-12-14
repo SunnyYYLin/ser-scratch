@@ -21,8 +21,8 @@ class EmotionClassifier(nn.Module):
 
         Args:
             audio (torch.Tensor): (batch_size, seq_len)
-            attention_mask (torch.Tensor, optional): 
-            label (torch.Tensor, optional): 
+            attention_mask (torch.Tensor, optional): (batch_size, seq_len)
+            label (torch.Tensor, optional): (batch_size,)
 
         Returns:
             _type_: _description_

@@ -8,12 +8,12 @@ class AudioCollator(DataCollatorMixin):
     def __call__(self, batch: list[dict[str, ]]):
         audios: list[torch.Tensor] = [torch.tensor(x['audio']['array'], dtype=torch.float) 
                                      for x in batch]
-        attn_masks = torch.tensor([audio.shape[0] for audio in audios], dtype=torch.long)
-        audios = pad_sequence(audios, batch_first=True, padding_value=0)
+        padded_audios = pad_sequence(audios, batch_first=True, padding_value=0)
+        attn_masks = (padded_audios != 0)
         labels = torch.tensor([x['label'] for x in batch], dtype=torch.long)
         
         return {
-            'audio': audios,
+            'audio': padded_audios,
             'label': labels,
             'attention_mask': attn_masks
         }
