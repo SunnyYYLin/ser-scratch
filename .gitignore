@@ -163,3 +163,7 @@ cython_debug/
 
 logs/
 checkpoints/
+*.gz
+*.zip
+*.pt
+*.pth

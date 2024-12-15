@@ -23,9 +23,6 @@ class ConvBlock1d(nn.Module):
 class SpeechCNN(nn.Module):
     def __init__(self, config: CNNConfig):
         super(SpeechCNN, self).__init__()
-        self.spec = ta.transforms.MelSpectrogram(
-            sample_rate=config.sample_rate,
-        )
         conv_blocks = OrderedDict(
             [
                 (
