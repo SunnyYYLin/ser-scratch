@@ -7,8 +7,6 @@ from metrics import SERMetircs
 import os
 from pathlib import Path
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7"
-
 # Load the dataset
 print("Loading the dataset...")
 dataset = load_dataset("Zahra99/IEMOCAP_Audio")
@@ -22,7 +20,7 @@ print("Dataset loaded.")
 
 # Load the model
 config = Wav2VecConfig(
-    pooling='attn',
+    pooling='conv',
 )
 model = EmotionClassifier(config)
 print(model)
@@ -59,4 +57,4 @@ trainer = Trainer(
     callbacks=call_backs,
     compute_metrics=SERMetircs(config)
 )
-# trainer.train()
+trainer.train()
