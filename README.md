@@ -1,6 +1,6 @@
 # Speech Emotion Recognition from Scratch
 
-这是一个使用深度学习模型进行语音情感识别的项目。报告在`report/`下。
+这是一个使用深度学习模型进行语音情感识别的项目。报告在`doc/`下。
 
 ## 目录结构
 
